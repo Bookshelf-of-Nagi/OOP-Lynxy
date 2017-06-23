@@ -2,6 +2,7 @@
 #define __READER_H__
 
 #include <string>
+#include "Lexer.h"
 
 class Reader{
 		private:
@@ -11,7 +12,7 @@ class Reader{
 			Reader(const Reader &) = delete;
 			Reader & operator= (Reader &&);
 			Reader & operator= (const Reader &) = delete;
-			std::string read_word();
+			Token read_word();
 			~Reader();
 };
 
