@@ -14,20 +14,19 @@ std::ostream & operator<<(std::ostream & out, Token tt){
 void Reader :: preprocess(){
     ifstream fin(fn);
     fstream tempfile;
-	string ttpfn=randString()+fn;
+	string ttpfn=fn+randString()+".cpp";
 	cerr << ttpfn << endl;
 	tempfile.open(ttpfn,ios_base::out | ios_base::trunc);
 
-	static char line[300];
+	string line
 	regex f_include("^\\s*#\\s*include.*[\n\r]*");
-	while(fin.getline(line,256)){
-		cerr << strlen(line) << ":" << line << endl;
+	while(!getline(fin,line).eof()){
 		if(!regex_match(line,f_include))
 			tempfile << line << endl;
 	}
 
 	tempfile.close();
-	tpfn = randString()+fn;
+	tpfn = fn+randString()+".cpp";
 	system(("g++ -E "+ttpfn+" -o "+tpfn).c_str());
 	remove(ttpfn.c_str());
 }
