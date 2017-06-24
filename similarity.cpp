@@ -18,6 +18,7 @@ std::vector<Token> similarity::get_word(std::string fileName)
     while(true)
     {
         tmp = read.read_word();
+        std::cout<<tmp.content<<std::endl;
         if(tmp.type ==ENDOF)
             break;
         else
