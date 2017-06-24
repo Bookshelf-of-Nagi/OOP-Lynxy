@@ -1,6 +1,6 @@
 #include "HashFactory.h"
 
-void HashFactory::addInfo(string _info)
+void HashFactory::addInfo(std::string _info)
 {
     info.push_back(_info);
     return ;
@@ -10,45 +10,47 @@ void HashFactory::printInfo()
     int start = 1;
     for(auto i : info)
     {
-        cout<<start++<<".Using "<<i<<" to ensure the value of hash."<<endl;
+        std::cout<<start++<<".Using "<<i<<" to ensure the value of hash."<<std::endl;
     }
 }
 
-unsigned long HashFactory::ChoseHash(char *tok[], int Ntoken)
+unsigned long HashFactory::ChoseHash(char *tok[], int Ntoken, int* type)
 {
     switch(numHash)
     {
         case 1:
-            hash1(tok, Ntoken);
+            hash1(tok, Ntoken, type);
             break;
         case 2:
-            hash2(tok, Ntoken);
+            hash2(tok, Ntoken, type);
             break;
         case 3:
-            hash3(tok, Ntoken);
+            hash3(tok, Ntoken, type);
             break;
         default:
-            cout<<"Don't have this number, please try again."<<endl;
+            std::cout<<"Don't have this number, please try again."<<std::endl;
             int num = 0;
-            cin>>num;
+            std::cin>>num;
             set_numHash(num);
-            ChoseHash(tok, Ntoken);
+            ChoseHash(tok, Ntoken, type);
             break;
     }
 }
-unsigned long HashFactory::hash1(char *tok[], int Ntoken)
+unsigned long HashFactory::hash1(char *tok[], int Ntoken, int* type)
 {
     unsigned long h;
 	unsigned char *s;
-	int i;
 
 	h = 0;
-	for (i=0; i < Ntoken; i++)
+	for (int i = 0; i < Ntoken; i++)
 		for (s = (unsigned char*)tok[i]; *s; s++)
-			h = h*31 + *s;
+		{
+
+            h = h*31 + *s;
+        }
 	return h;
 }
-unsigned long HashFactory::hash2(char *tok[], int Ntoken)
+unsigned long HashFactory::hash2(char *tok[], int Ntoken, int* type)
 {
     int p = 16777619;
     int hash = (int)2166136261L;
@@ -63,7 +65,7 @@ unsigned long HashFactory::hash2(char *tok[], int Ntoken)
     hash += hash << 5;
     return hash;
 }
-unsigned long HashFactory::hash3(char *tok[], int Ntoken)
+unsigned long HashFactory::hash3(char *tok[], int Ntoken, int* type)
 {
     unsigned long hash = 0;
     unsigned char *s;

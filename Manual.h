@@ -4,12 +4,16 @@
 #include <iostream>
 using std::string;
 using std::cout;
+/*****************************************
+    This class can explain how to use this
+program.
+*****************************************/
+
 class Manual
 {
 public:
     Manual() {}
-    void printInfo(string name);
-    void judusing(int argc, char *argv[]);
+    void printInfo();
     ~Manual() {}
 };
 
