@@ -15,25 +15,27 @@ void Reader :: preprocess(){
     ifstream fin(fn);
     fstream tempfile;
 	string ttpfn=fn+randString()+".cpp";
-	cerr << ttpfn << endl;
+	//cerr << ttpfn << endl;
 	tempfile.open(ttpfn,ios_base::out | ios_base::trunc);
 
-	string line
+	string line;
 	regex f_include("^\\s*#\\s*include.*[\n\r]*");
-	while(!getline(fin,line).eof()){
+	while(1){
+		getline(fin,line);
 		if(!regex_match(line,f_include))
 			tempfile << line << endl;
+		if(fin.eof()) break;
 	}
 
 	tempfile.close();
 	tpfn = fn+randString()+".cpp";
 	system(("g++ -E "+ttpfn+" -o "+tpfn).c_str());
-	remove(ttpfn.c_str());
+//	remove(ttpfn.c_str());
 }
 
 Token Reader :: read_word(){
     ch=cr.next_char();
-    cerr << ch << endl;
+    //cerr << ch << endl;
     if(ch==EOF) return Token(ENDOF,"");
     else if(ch=='\''){
         ret="";

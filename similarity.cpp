@@ -171,7 +171,6 @@ void similarity::startDetect(int argc, char *argv[])
         t = get_word(argv[i + 1]);
 		sig[i] = signature(t);
 	}
-    std::cout<<"***********************************************************************";
 	/* compare each signature pair-wise */
 	for (i=0; i < nfiles; i++)
 		for (j=i+1; j < nfiles; j++)
