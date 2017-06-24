@@ -2,12 +2,12 @@
 #define __LEXER_H__
 
 #include <string>
-#include 
+
 enum TokenType{
 	NUMBER, // int & float constants
 	BOOLEAN, // true & false constants
 	STRING, // string constants
-	OPERATOR, 
+	OPERATOR,
 	IDENTIFIER,
 	KEYWORD
 };
